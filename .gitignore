@@ -53,3 +53,6 @@ venv.bak/
 # PyCharm
 .idea/
 
+# database
+backend/database.db
+

@@ -19,6 +19,7 @@ class NoteRepository:
         return note
 
     def update_note(self, note_id: int, updated_note: Note) -> Note:
+        updated_note.id = note_id
         note = self.get_note_by_id(note_id)
         if note:
             for key, value in updated_note.model_dump().items():

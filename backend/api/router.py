@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from api.routes.hero import router as hero_router
+from api.routes.note import router as note_router
 
 
 router = APIRouter()
 
-router.include_router(hero_router)
+router.include_router(note_router)

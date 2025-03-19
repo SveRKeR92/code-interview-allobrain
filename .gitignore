@@ -56,3 +56,6 @@ venv.bak/
 # database
 backend/database.db
 
+# REST Client
+*.http
+*.rest

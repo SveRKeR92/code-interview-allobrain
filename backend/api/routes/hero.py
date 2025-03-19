@@ -4,8 +4,7 @@ from fastapi import APIRouter, HTTPException, Query
 from sqlmodel import select
 
 from database import SessionDep
-from models.hero_model import Hero
-from models.hero_model_validator import HeroValidator
+from models.hero_model import Hero, HeroValidator
 
 router = APIRouter()
 

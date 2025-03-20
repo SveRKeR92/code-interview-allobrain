@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import {Note} from './types/note'
-import './App.css'
+import './styles/App.css'
 import './styles/Note.css'
+import NoteCard from "./components/NoteCard.tsx";
+import {NavLink} from "react-router";
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
@@ -24,36 +24,16 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Notes</h1>
       <ul className="note-list">
         {notes.map(note => (
           <li key={note.id}>
-            <NoteCard note={note} />
+            <NavLink className={'link'} to={`/note/${note.id}`}>
+              <NoteCard note={note} />
+            </NavLink>
           </li>
         ))}
       </ul>
-    </>
-  )
-}
-
-function NoteCard({ note }: { note: Note }) {
-  return(
-    <>
-      <div className="note-card">
-        {note.title}
-        <br/>
-        {note.content}
-        <br/>
-        {note.toString()}
-      </div>
     </>
   )
 }

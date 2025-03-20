@@ -7,8 +7,7 @@
 }
 
 .note-card {
-  padding: 1em;
-  margin: 1em;
+  padding: 0 16px;
   border: 1px solid #ccc;
   background: #242424;
   border-radius: 8px;
@@ -19,5 +18,5 @@
 }
 
 .note-card:hover{
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em rgba(197, 197, 252, 0.69));
 }

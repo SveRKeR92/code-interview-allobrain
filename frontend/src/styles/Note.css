@@ -1,0 +1,23 @@
+.note-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+  padding-inline-start: 0;
+}
+
+.note-card {
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid #ccc;
+  background: #242424;
+  border-radius: 8px;
+  text-align: left;
+
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.note-card:hover{
+  filter: drop-shadow(0 0 2em #646cffaa);
+}

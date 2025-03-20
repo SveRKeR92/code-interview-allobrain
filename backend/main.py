@@ -1,5 +1,6 @@
 from fastapi import FastAPI, status
 from fastapi.exceptions import RequestValidationError
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
 from database import create_db_and_tables
@@ -21,5 +22,13 @@ async def validation_exception_handler(request, exc):
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"detail": exc.errors()},
     )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(router.router)

@@ -20,6 +20,8 @@ def read_notes_backup(
     backup_repository: NoteBackupRepository = Depends(get_note_backup_repository)
 ):
     notes_backups = backup_repository.get_all_note_backups()
+    if notes_backups is None:
+        raise HTTPException(status_code=404, detail="Note backup not found")
     return notes_backups
 
 
@@ -41,6 +43,8 @@ def create_note_backup(
     note_repository: NoteRepository = Depends(get_note_repository)
 ):
     note = note_repository.get_note_by_id(note_validator.note_id)
+    if note is None:
+        raise HTTPException(status_code=404, detail="Note not found")
     note_backup = NoteBackup(
         note_id=note_validator.note_id,
         title=note.title,

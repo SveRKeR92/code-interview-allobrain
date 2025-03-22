@@ -5,10 +5,16 @@
   gap: 3rem;
 }
 
-.note h1 {
+.note header {
+  display: flex;
+  justify-content: space-between;
   margin-top: 3rem;
   border-bottom: 1px solid #ccc;
   padding: 1rem;
+}
+
+.note header h1 {
+  margin: 0;
 }
 
 .note {

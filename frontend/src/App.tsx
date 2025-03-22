@@ -5,11 +5,13 @@ import NoteCard from "./components/NoteCard.tsx";
 import {NavLink} from "react-router";
 import Modal from "./components/Modal.tsx";
 import EditForm from "./components/EditForm.tsx";
+import {getAllNotes} from "./scripts/note_api.ts";
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
   const [showModal, setShowModal] = useState(false);
 
+  const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
   const noteSaved = (note: Note) => {
@@ -18,17 +20,16 @@ function App() {
   }
 
   useEffect(() => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
-    fetch(`${API_BASE_URL}/notes`)
-      .then(r => r.json())
-      .then((json: any[]) =>
-        setNotes(
-          json.map(
-            data => new Note(data.id, data.title, data.content, data.created_at, data.updated_at)
-          )
-        )
-      )
-      .catch(e => console.error(e))
+    const fetchAndSetNotes = async () => {
+      try {
+        const notes = await getAllNotes();
+        setNotes(notes);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchAndSetNotes();
   }, [])
 
   return (
@@ -43,7 +44,7 @@ function App() {
           </li>
         ))}
       </ul>
-      <button onClick={() => setShowModal(true)}>Create new note</button>
+      <button onClick={openModal}>Create new note</button>
       <Modal title={'Create a Note'} open={showModal} onClose={closeModal}>
         <EditForm onSave={noteSaved}/>
       </Modal>

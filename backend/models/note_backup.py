@@ -1,5 +1,3 @@
-from email.policy import default
-
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Field
 from datetime import datetime

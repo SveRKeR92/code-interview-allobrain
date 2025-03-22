@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Note as NoteType } from "../types/note.ts";
 import Nav from "../components/Nav.tsx";
 import '../styles/Note.css';
+import HistoryDrawer from "../components/HistoryDrawer.tsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
@@ -24,16 +25,21 @@ function Note() {
 
   return (
     <>
-      <div className={'note'}>
-        <Nav />
-        <h1>{note.title}</h1>
-        <div>
-          <p>{note.content}</p>
+      <div className={'note-page'}>
+        <div className={'note'}>
+          <Nav />
+          <h1>{note.title}</h1>
+          <div>
+            <p>{note.content}</p>
+          </div>
+          <footer>
+            <p>Last updated</p>
+            <p>{note.updatedAt.split('.')[0]}</p>
+          </footer>
         </div>
-        <footer>
-          <p>Last updated</p>
-          <p>{note.updatedAt}</p>
-        </footer>
+        <div className={'history-drawer-container'}>
+          <HistoryDrawer note_id={note.id} />
+        </div>
       </div>
     </>
     )

@@ -1,4 +1,11 @@
-h1 {
+.note-page{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.note h1 {
   margin-top: 3rem;
   border-bottom: 1px solid #ccc;
   padding: 1rem;
@@ -12,4 +19,8 @@ h1 {
 .note footer p{
   text-align: right;
   margin: 0;
+}
+
+.history-drawer-container {
+  width: 30%;
 }

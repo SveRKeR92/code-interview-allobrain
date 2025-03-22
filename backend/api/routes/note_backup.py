@@ -28,10 +28,10 @@ def read_note_backup(
     note_id: int,
     backup_repository: NoteBackupRepository = Depends(get_note_backup_repository)
 ):
-    note_backup = backup_repository.get_note_backup_by_id(note_id)
-    if note_backup is None:
+    note_backups = backup_repository.get_note_backups_by_note_id(note_id)
+    if note_backups is None:
         raise HTTPException(status_code=404, detail="Note backup not found")
-    return note_backup
+    return note_backups
 
 
 @router.post("/note_backup")

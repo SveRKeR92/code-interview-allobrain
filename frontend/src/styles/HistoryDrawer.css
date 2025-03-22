@@ -1,0 +1,26 @@
+.history-drawer {
+  margin-top: 3rem;
+  text-align: left;
+}
+
+.history-drawer .title {
+  display: flex;
+  border-bottom: 1px solid #424242;
+}
+
+.history-drawer h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.history-drawer .title span {
+  margin-right: 8px;
+}
+
+.history p {
+  margin: 0;
+}
+
+.history footer {
+  text-align: right;
+}

@@ -1,4 +1,5 @@
 import {Note} from "../types/note.ts";
+import '../styles/NoteCard.css'
 
 function NoteCard({ note }: { note: Note }) {
   return(

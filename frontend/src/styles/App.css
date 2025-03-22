@@ -16,3 +16,11 @@
 .link:hover {
   color: #f9f9f9;
 }
+
+.note-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+  padding-inline-start: 0;
+}

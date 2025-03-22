@@ -1,0 +1,14 @@
+.note-card {
+  padding: 0 16px;
+  border: 1px solid #ccc;
+  background: #242424;
+  border-radius: 8px;
+  text-align: left;
+
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.note-card:hover{
+  filter: drop-shadow(0 0 1em rgba(197, 197, 252, 0.69));
+}

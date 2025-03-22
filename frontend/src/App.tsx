@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import {Note} from './types/note'
 import './styles/App.css'
-import './styles/Note.css'
 import NoteCard from "./components/NoteCard.tsx";
 import {NavLink} from "react-router";
 

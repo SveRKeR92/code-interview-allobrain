@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Note as NoteType } from "../types/note.ts";
 import Nav from "../components/Nav.tsx";
+import '../styles/Note.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
@@ -23,9 +24,17 @@ function Note() {
 
   return (
     <>
-      <Nav />
-      <h1>{note.title}</h1>
-      <div>{note.toString()}</div>
+      <div className={'note-page'}>
+        <Nav />
+        <h1>{note.title}</h1>
+        <div>
+          <p>{note.content}</p>
+        </div>
+        <footer>
+          <p>Last updated</p>
+          <p>{note.updatedAt}</p>
+        </footer>
+      </div>
     </>
     )
 

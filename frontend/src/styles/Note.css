@@ -4,12 +4,12 @@ h1 {
   padding: 1rem;
 }
 
-.note-page {
+.note {
   text-align: left;
   width: 70%;
 }
 
-.note-page footer p{
+.note footer p{
   text-align: right;
   margin: 0;
 }

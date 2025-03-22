@@ -24,7 +24,7 @@ function Note() {
 
   return (
     <>
-      <div className={'note-page'}>
+      <div className={'note'}>
         <Nav />
         <h1>{note.title}</h1>
         <div>

@@ -3,9 +3,19 @@ import {Note} from './types/note'
 import './styles/App.css'
 import NoteCard from "./components/NoteCard.tsx";
 import {NavLink} from "react-router";
+import Modal from "./components/Modal.tsx";
+import EditForm from "./components/EditForm.tsx";
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => setShowModal(false);
+
+  const noteSaved = (note: Note) => {
+    setNotes(notes.concat(note))
+    closeModal();
+  }
 
   useEffect(() => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
@@ -33,6 +43,10 @@ function App() {
           </li>
         ))}
       </ul>
+      <button onClick={() => setShowModal(true)}>Create new note</button>
+      <Modal title={'Create a Note'} open={showModal} onClose={closeModal}>
+        <EditForm onSave={noteSaved}/>
+      </Modal>
     </>
   )
 }

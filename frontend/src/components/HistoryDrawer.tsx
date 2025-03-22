@@ -12,6 +12,7 @@ function HistoryDrawer({ note_id } : { note_id: number }) {
       .then((json: any[]) =>
         setBackups(json.map(
           data => ({
+            id: data.id,
             title: data.title,
             content: data.content,
             createdAt: data.created_at,
@@ -29,7 +30,7 @@ function HistoryDrawer({ note_id } : { note_id: number }) {
         </div>
         <div className={'history'}>
           {backups.map((backup) => (
-            <div className={'backup'}>
+            <div className={'backup'} key={backup.id}>
               <p>{backup.title}</p>
               <p>{backup.content}</p>
               <footer>

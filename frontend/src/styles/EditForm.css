@@ -1,0 +1,23 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.edit-form label {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.edit-form input, .edit-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-family: inherit;
+}
+
+.edit-form textarea {
+  min-height: 200px;
+  resize: none;
+}

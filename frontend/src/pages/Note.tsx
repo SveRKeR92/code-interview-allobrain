@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import {useNavigate, useParams} from "react-router";
 import { useEffect, useState } from "react";
 import { Note as NoteType } from "../types/note.ts";
 import Nav from "../components/Nav.tsx";
@@ -6,18 +6,22 @@ import '../styles/Note.css';
 import HistoryDrawer from "../components/HistoryDrawer.tsx";
 import EditForm from "../components/EditForm.tsx";
 import Modal from "../components/Modal.tsx";
-import {getBackups, getNote, updateNote} from "../scripts/note_api.ts";
+import {deleteNote, getBackups, getNote, updateNote} from "../scripts/note_api.ts";
 import {NoteBackup} from "../types/noteBackup.ts";
 
 function Note() {
   const [note, setNote] = useState<NoteType | null>(null);
   const [backups, setBackups] = useState<any[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const params = useParams();
 
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
+  const openEditModal = () => setShowEditModal(true);
+  const closeEditModal = () => setShowEditModal(false);
+  const openDeleteModal = () => setShowDeleteModal(true);
+  const closeDeleteModal = () => setShowDeleteModal(false);
 
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchAndSetNote = async () => {
@@ -52,7 +56,13 @@ function Note() {
   const noteSaved = (note: NoteType) => {
     console.log(note);
     setNote(note);
-    closeModal();
+    closeEditModal();
+  }
+
+  const handleDelete = async () => {
+    await deleteNote(note.id);
+    closeDeleteModal();
+    navigate('/');
   }
 
   const handleBackup = async (selectedBackup: NoteBackup) => {
@@ -75,7 +85,10 @@ function Note() {
           <Nav />
           <header>
             <h1>{note.title}</h1>
-            <button onClick={openModal}>Edit</button>
+            <div className={'btn-container'}>
+              <button onClick={openEditModal}>Edit</button>
+              <button onClick={openDeleteModal}>Delete</button>
+            </div>
           </header>
           <div>
             <p>{note.content}</p>
@@ -89,8 +102,11 @@ function Note() {
           <HistoryDrawer backups={backups} onBackup={handleBackup}/>
         </div>
       </div>
-      <Modal title={'Edit a note'} open={showModal} onClose={closeModal}>
+      <Modal title={'Edit a note'} open={showEditModal} onClose={closeEditModal}>
         <EditForm onSave={noteSaved} note={note} />
+      </Modal>
+      <Modal title={'Are you sure to delete this note ?'} open={showDeleteModal} onClose={closeDeleteModal}>
+        <button onClick={handleDelete}>Confirm</button>
       </Modal>
     </>
     )

@@ -17,6 +17,11 @@
   margin: 0;
 }
 
+.note header .btn-container{
+  display: flex;
+  gap: 1rem;
+}
+
 .note {
   text-align: left;
   width: 70%;

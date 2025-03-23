@@ -72,6 +72,17 @@ export const updateNote = async (note: Note) => {
   }
 }
 
+export const deleteNote = async (id: number) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/notes/${id}`, {
+      method: 'DELETE',
+    })
+    return response.json();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 
 export const createBackup = async (noteId: number) => {
   try {

@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, status
 from fastapi.exceptions import RequestValidationError
 from starlette.middleware.cors import CORSMiddleware
@@ -6,15 +8,16 @@ from starlette.responses import JSONResponse
 from database import create_db_and_tables
 from api import router
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 def health_check():
     return {"ok": True}
-
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):

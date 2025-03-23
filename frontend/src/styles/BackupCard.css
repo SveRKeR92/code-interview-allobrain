@@ -1,0 +1,22 @@
+.backup {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background: #242424;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  transition: filter 300ms;
+}
+
+.backup:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 1em rgba(197, 197, 252, 0.69));
+}
+
+.backup p {
+  margin: 0;
+}
+
+.backup footer {
+  text-align: right;
+}

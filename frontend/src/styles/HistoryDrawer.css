@@ -17,10 +17,12 @@
   margin-right: 8px;
 }
 
-.history p {
-  margin: 0;
+.select-backup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
-.history footer {
-  text-align: right;
+.select-backup h4{
+  margin-bottom: 8px;
 }

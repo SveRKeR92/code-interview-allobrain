@@ -1,4 +1,5 @@
 import {Note} from "../types/note.ts";
+import {NoteBackup} from "../types/noteBackup.ts";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
@@ -8,7 +9,7 @@ export const getAllNotes = async () => {
     const response = await fetch(`${API_BASE_URL}/notes`);
     const json: any[] = await response.json();
     return json.map(
-        (data) => new Note(data.id, data.title, data.content, data.created_at, data.updated_at)
+      data => new Note(data.id, data.title, data.content, data.created_at, data.updated_at)
     )
   } catch (e) {
     console.error(e);
@@ -95,12 +96,7 @@ export const getBackups = async (noteId: number) => {
     const response = await fetch(`${API_BASE_URL}/note_backup/${noteId}`);
     const json: any[] = await response.json()
     return json.map(
-      data => ({
-        id: data.id,
-        title: data.title,
-        content: data.content,
-        createdAt: data.created_at,
-      })
+      data => new NoteBackup(data.id, data.title, data.content, data.created_at)
     )
   } catch (e) {
     console.error(e);

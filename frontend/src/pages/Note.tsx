@@ -6,7 +6,8 @@ import '../styles/Note.css';
 import HistoryDrawer from "../components/HistoryDrawer.tsx";
 import EditForm from "../components/EditForm.tsx";
 import Modal from "../components/Modal.tsx";
-import {getBackups, getNote} from "../scripts/note_api.ts";
+import {getBackups, getNote, updateNote} from "../scripts/note_api.ts";
+import {NoteBackup} from "../types/noteBackup.ts";
 
 function Note() {
   const [note, setNote] = useState<NoteType | null>(null);
@@ -54,6 +55,19 @@ function Note() {
     closeModal();
   }
 
+  const handleBackup = async (selectedBackup: NoteBackup) => {
+    console.log(selectedBackup);
+    const updatedNote = new NoteType(
+      note.id,
+      selectedBackup.title,
+      selectedBackup.content,
+      note.createdAt,
+      note.updatedAt,
+    )
+    await updateNote(note);
+    setNote(updatedNote);
+  }
+
   return (
     <>
       <div className={'note-page'}>
@@ -72,7 +86,7 @@ function Note() {
           </footer>
         </div>
         <div className={'history-drawer-container'}>
-          <HistoryDrawer backups={backups} />
+          <HistoryDrawer backups={backups} onBackup={handleBackup}/>
         </div>
       </div>
       <Modal title={'Edit a note'} open={showModal} onClose={closeModal}>

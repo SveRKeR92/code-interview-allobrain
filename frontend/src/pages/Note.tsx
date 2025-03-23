@@ -34,8 +34,10 @@ function Note() {
   useEffect(() => {
     const fetchAndSetBackups = async () => {
       try {
-        const backups = await getBackups(note!.id);
-        setBackups(backups)
+        if (note) {
+          const backups = await getBackups(note.id);
+          setBackups(backups)
+        }
       } catch (e) {
         console.error(e);
       }

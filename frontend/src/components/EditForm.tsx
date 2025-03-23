@@ -21,14 +21,15 @@ function EditForm(props: FormProps) {
     let note: Note | undefined = props.note;
     if (!note) {
       note = await createNote(title as string, content as string);
+      await createBackup(note.id);
       resetValues();
     } else {
-      await createBackup(note.id);
       note.updateNote(
         title as string,
         content as string
       );
       note = await updateNote(note);
+      await createBackup(note.id);
     }
     props.onSave(note);
   }

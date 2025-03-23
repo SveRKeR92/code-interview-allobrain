@@ -38,8 +38,8 @@ export const createNote = async (title: string, content: string) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title,
-        content,
+        title: title.toString(),
+        content: content.toString(),
       })
     })
 
@@ -60,8 +60,8 @@ export const updateNote = async (note: Note) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title: note.title,
-        content: note.content,
+        title: note.title.toString(),
+        content: note.content.toString(),
       })
     })
     const json: any = await response.json();
